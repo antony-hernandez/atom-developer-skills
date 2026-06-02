@@ -1,0 +1,16 @@
+{
+  "name": "@atomchat/atomic",
+  "version": "0.1.0",
+  "description": "Asistente de desarrollo spec-driven para el equipo de Atom",
+  "bin": {
+    "atomic": "./src/install.mjs"
+  },
+  "type": "module",
+  "files": [
+    "src/",
+    "templates/"
+  ],
+  "engines": {
+    "node": ">=18"
+  }
+}

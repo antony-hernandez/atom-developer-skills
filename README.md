@@ -13,7 +13,7 @@ Das un ID de tarea → Atomic lee Jira, sube a la HU, va a Confluence, encuentra
 Desde cualquier proyecto en Claude Code, escribe:
 
 ```
-instala Atomic en este proyecto desde https://github.com/atomchat/atomic
+instala Atomic en este proyecto desde https://github.com/antony-hernandez/atomic
 ```
 
 Claude descarga los skills, configura los MCPs y actualiza el CLAUDE.md.
@@ -21,13 +21,13 @@ Claude descarga los skills, configura los MCPs y actualiza el CLAUDE.md.
 ### Opción 2 — curl
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/atomchat/atomic/main/packages/cli/src/install.mjs | node
+curl -fsSL https://raw.githubusercontent.com/antony-hernandez/atomic/main/packages/cli/src/install.mjs | node
 ```
 
 ### Opción 3 — npx
 
 ```bash
-npx github:atomchat/atomic
+npx github:antony-hernandez/atomic
 ```
 
 ---

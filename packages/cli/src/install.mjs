@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 /**
  * Atomic installer — copia skills, CLAUDE.md y configura MCPs
- * Uso: npx @atomchat/atomic
+ * Uso: npx github:antony-hernandez/atomic
  */
 
 import { readFileSync, writeFileSync, mkdirSync, existsSync, copyFileSync } from "fs";

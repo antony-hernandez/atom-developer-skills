@@ -39,6 +39,12 @@ El workflow GSD estándar asume spikes de código. Atomic usa spikes de comporta
 | Checkpoint humano | **Obligatorio** — el agente no puede declarar VALIDATED solo; el usuario debe confirmar |
 | `gsd_run query commit` | No disponible en este repo; usar `git commit` directo |
 
+## El formato que realmente constrine
+
+La prosa ("reusar antes de crear") produce 1 búsqueda genérica. Un gate con queries pre-especificadas por tipo de tarea produce N búsquedas exhaustivas antes de proponer código.
+
+La regla operativa: **ningún archivo, clase, función, o enum nuevo puede proponerse hasta que CodeGraph confirme que no existe.** No es una sugerencia — es un gate.
+
 ## Reglas que emergieron de los spikes
 
 - **El link al spec no está en remote links de Jira** — está en el body como texto (`Documento fuente:` o sección `## Confluence`)

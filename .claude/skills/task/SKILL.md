@@ -213,36 +213,45 @@ Después de entregar el brief, preguntar:
 Si el usuario dice que sí → resolver antes de tocar código.
 Si el usuario dice que no → comenzar la implementación siguiendo estrictamente los criterios del brief.
 
-## Paso 6.5 — Verificación de reuso con CodeGraph (ANTES de escribir código)
+## Paso 6.5 — Gate de reuso con CodeGraph (ANTES de escribir código)
 
-Antes de implementar cualquier cosa, verificar qué ya existe en el codebase.
-CodeGraph tiene el codebase de Atom indexado — úsalo. No leas archivos para buscar.
+**Regla:** ningún archivo, clase, función, o enum nuevo puede proponerse hasta que CodeGraph confirme que no existe.
 
-Si `TASK_TYPE = FE`, buscar componentes y utilities relacionados:
-```
-codegraph_context(task: "descripción de lo que se va a construir")
-codegraph_search(query: "<ComponenteName>", kind: "component")
-codegraph_search(query: "<utilityName>", kind: "function")
-```
+Para cada elemento mencionado en la tabla "QUÉ CONSTRUIR" del brief — componentes, enums, servicios, mappers, validators — ejecutar en paralelo:
 
-Si `TASK_TYPE = BE`, buscar servicios, validators y utils:
 ```
-codegraph_context(task: "descripción del cambio BE")
-codegraph_search(query: "<ServiceName>", kind: "class")
-codegraph_search(query: "<validatorName>", kind: "function")
+codegraph_search(query: "<NombreExacto>")           // ¿existe?
+codegraph_context(task: "<descripción del elemento>") // ¿cómo funciona lo relacionado?
 ```
 
-Agregar al brief una sección **REUSO**:
+Ejecutar todas las queries del gate en paralelo. No escribir código hasta tener los resultados.
+
+**Queries mínimas por tipo de tarea:**
+
+Si `TASK_TYPE = FE`:
+- Cada enum nuevo: `codegraph_search("<EnumName>")`
+- Cada componente nuevo: `codegraph_context("<feature> <component-name>")`
+- Cada servicio nuevo: `codegraph_search("<ServiceName>")`
+- Siempre: `codegraph_search("audience-condition.mapper")` si el task toca audiencias
+- Siempre: `codegraph_context("<feature> condition-row")` si el task toca el builder
+
+Si `TASK_TYPE = BE`:
+- Cada ConditionType nuevo: `codegraph_search("ConditionType")`
+- Cada use-case nuevo: `codegraph_context("<feature> usecase")`
+- Siempre: `codegraph_search("filter-condition-group-schema")` si toca validaciones Joi
+- Siempre: `codegraph_search("on-update")` si toca triggers de conversación
+
+Agregar al brief la sección **REUSO**:
 ```
 ───────────────────────────────────────────────────────────────
  REUSO — lo que ya existe y debes usar
 ───────────────────────────────────────────────────────────────
-✅ <NombreComponente> — ya existe en <ruta>
-✅ <NombreUtility> — ya existe en <ruta>, úsalo en lugar de crear uno nuevo
-⚠️  <NombreCosa> — no existe, tendrás que crearlo
+✅ <NombreComponente> — ya existe en <ruta> — úsalo, no lo crees
+✅ <NombreUtility> — ya existe en <ruta>
+⚠️  <NombreCosa> — no existe, crear siguiendo el patrón de <análogo>
 ```
 
-Esto previene que el dev cree código que ya existe. Es la regla más importante.
+Si algo "no existe", buscar el análogo más cercano en CodeGraph y referenciarlo en el brief como patrón a seguir.
 
 ## Durante la implementación
 

@@ -29,6 +29,7 @@ for (const dir of dirs) {
 // 2. Copiar skills
 const skills = [
   ["skills/task/SKILL.md", ".claude/skills/task/SKILL.md"],
+  ["skills/task/brief-template.md", ".claude/skills/task/brief-template.md"],
 ];
 for (const [src, dest] of skills) {
   copyFileSync(join(TEMPLATES, src), join(ROOT, dest));

@@ -1,10 +1,13 @@
 ### Frontend (Angular)
-- Reusar componentes de `condition-group`, `condition-row`, `logical-operator` para builders de condiciones
-- Usar `normalizeAudienceGroups` para serialización de grupos
-- Validators de Angular Reactive Forms (`Validators.max`, `Validators.required`, etc.) — no lógica custom en el template
-- Seguir el patrón establecido en listas dinámicas al implementar listas estáticas
-- Los mappers de audiencia van en `audience-condition.mapper.ts`
-- **Suscripciones**: siempre `takeUntil(this.destroy$)` + `Subject<void>` destruido en `ngOnDestroy` — sin `unsubscribe()` manual ni subscriptions huérfanas
-- **@Inputs**: no mutar directamente — crear copia o emitir hacia arriba con `@Output()`
-- **Change detection**: si el componente ya usa `OnPush`, mantenerlo — no bajar a `Default`
-- **Tipos**: extender interfaces existentes con campos opcionales — no crear tipos paralelos para el mismo concepto
+- Reusar componentes, servicios y utils existentes — CodeGraph confirma qué hay antes de crear
+- Sin strings hardcodeados — todo texto va en los archivos i18n correspondientes
+- Validators de Angular Reactive Forms — no lógica de validación custom en el template
+- **UI**: textos exactos de Figma (capitalización, puntuación incluida), reusar tokens y variables del design system, no hardcodear colores ni tamaños
+- **Discrepancias Figma/spec**: reportar antes de implementar, no resolver por cuenta propia
+- **Suscripciones**: `takeUntil(this.destroy$)` + `Subject<void>` en `ngOnDestroy`
+- **@Inputs**: no mutar directamente — crear copia o emitir con `@Output()`
+- **Change detection**: mantener `OnPush` si ya está — no bajar a `Default`
+- **Tipos**: extender interfaces existentes con campos opcionales — no crear tipos paralelos
+- **Templates**: `async` pipe para observables, `trackBy` en todo `*ngFor`
+- **Módulos**: lazy loading por defecto en módulos nuevos
+- **Accesibilidad**: `aria-label` en elementos interactivos sin texto visible

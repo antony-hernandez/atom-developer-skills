@@ -8,7 +8,27 @@ Das un ID de tarea → Atomic lee Jira, sube a la HU, va a Confluence, encuentra
 
 ## Instalación
 
-### Opción 1 — Claude lo instala por ti (recomendado)
+### Opción 1 — skills.sh (recomendado)
+
+```bash
+npx skills@latest add antony-hernandez/atomic
+```
+
+Instala los skills en tu agente preferido (Claude Code, Cursor, etc.) con soporte de updates automáticos.
+
+### Opción 2 — npx directo
+
+```bash
+npx github:antony-hernandez/atomic
+```
+
+### Opción 3 — curl
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/antony-hernandez/atomic/main/packages/cli/src/install.mjs | node
+```
+
+### Opción 4 — Claude lo instala por ti
 
 Desde cualquier proyecto en Claude Code, escribe:
 
@@ -17,18 +37,6 @@ instala Atomic en este proyecto desde https://github.com/antony-hernandez/atomic
 ```
 
 Claude descarga los skills, configura los MCPs y actualiza el CLAUDE.md.
-
-### Opción 2 — curl
-
-```bash
-curl -fsSL https://raw.githubusercontent.com/antony-hernandez/atomic/main/packages/cli/src/install.mjs | node
-```
-
-### Opción 3 — npx
-
-```bash
-npx github:antony-hernandez/atomic
-```
 
 El installer:
 - Copia los skills `/task` y `/spec` en `.claude/skills/`

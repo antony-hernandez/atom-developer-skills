@@ -133,6 +133,7 @@ Esto carga: la tarea, la HU padre, la Spec Técnica en Confluence, el FRD (si ex
 ### Frontend (Angular)
 - Reusar componentes, servicios y utils existentes — CodeGraph confirma qué hay antes de crear
 - Sin strings hardcodeados — todo texto va en los archivos i18n correspondientes
+- **i18n consistencia**: al modificar una clave en un locale, actualizar todos los locales — capitalización, puntuación y formato deben ser consistentes entre idiomas (Figma solo muestra uno)
 - Validators de Angular Reactive Forms — no lógica de validación custom en el template
 - **UI**: textos exactos de Figma (capitalización, puntuación incluida), reusar tokens y variables del design system, no hardcodear colores ni tamaños
 - **Discrepancias Figma/spec**: reportar antes de implementar, no resolver por cuenta propia

@@ -18,6 +18,14 @@ Versioning follows [Semantic Versioning](https://semver.org/).
 
 ---
 
+## [0.11.1] - 2026-06-08
+
+### Changed
+- `CLAUDE-base.md`: reescrito — unifica escepticismo, scope exacto, tipado; elimina redundancias con skills; fusiona Gate+Blast radius en una sección sin nombres de componentes específicos
+- Skill `/task` v1.7.1: principio guía condensado (no repite CLAUDE-base.md); tabla de errores comunes reducida a 5 entradas no-obvias
+- Skill `/spec` v1.3.1: ídem — principio guía acotado a lo spec-específico; tabla de errores reducida a 5 entradas no-obvias
+- `templates/CLAUDE.md`: marcado como stale — el installer usa `CLAUDE-base.md`
+
 ## [0.11.0] - 2026-06-08
 
 ### Changed

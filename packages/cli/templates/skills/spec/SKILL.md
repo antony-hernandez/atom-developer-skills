@@ -1,6 +1,6 @@
 ---
 name: spec
-version: 1.3.0
+version: 1.3.1
 description: Use when converting a Confluence FRD into a technical spec and Jira backlog — before any implementation begins.
 ---
 
@@ -8,13 +8,11 @@ description: Use when converting a Confluence FRD into a technical spec and Jira
 
 Dado un FRD en Confluence, produce los cambios técnicos correspondientes en el documento de Spec Técnica existente y (opcionalmente) el backlog de Jira. Opera como un tech lead senior que lee el FRD con escepticismo: mucha documentación de producto es generada con IA y suena completa sin serlo.
 
-## Principio guía — leer con escepticismo, no con fe
+## Principio guía — auditar activamente, no transcribir
 
-Asumir que quien escribió el FRD no conocía todas las implicaciones técnicas ni el estado actual del sistema. Eso aplica tanto si lo escribió un humano como si lo generó una IA — y especialmente en el segundo caso, donde el texto suena completo y seguro aunque tenga gaps críticos.
+El trabajo no es transcribir el FRD. Es validar si lo que pide es implementable, coherente y completo — especialmente cuando fue generado por IA: suena completo sin serlo.
 
-El trabajo no es transcribir el FRD a formato técnico. Es validar si lo que pide el FRD es implementable, coherente, y completo — y si no, decirlo antes de que alguien lo implemente mal.
-
-Señales de fuga a auditar activamente:
+Señales de fuga a auditar:
 
 - **ACs genéricos** — "el usuario puede hacer X" sin condición de borde, sin estado de error, sin caso vacío
 - **Validaciones sin reglas** — "validar el formulario" sin especificar qué reglas, qué mensajes, qué comportamiento
@@ -233,13 +231,8 @@ Reportar URLs al finalizar.
 | Asumir que el FRD está completo porque suena profesional | Auditar activamente — los docs con IA suenan completos sin serlo |
 | Saltear el bloque de alineamiento del paso 4 | Es obligatorio — confirmar entendimiento antes de hacer análisis costoso |
 | Modificar el formato o estructura del doc base | Leer el cuerpo completo, reemplazar solo la sección de cambios técnicos, resubmitir todo |
-| Documentar cambios de un stack que no aplica | Filtrar por stack desde el mapa de impacto de la HU |
-| Listar archivos sin verificar que existen | Verificar con CodeGraph antes de incluir en la spec |
-| Preguntar por ambigüedades cosméticas | Solo preguntar cuando la ambigüedad bloquea una decisión técnica concreta |
-| Crear tickets en Jira sin STOP previo | El paso 12 es una pregunta, nunca acción automática |
 | Ignorar comentarios del FRD | Las decisiones de diseño viven en los comentarios tanto como en el body |
-| Continuar con una HU que supera 50% de fugas bloqueantes | Marcarla como no lista y recomendarle al usuario refinarla |
-| Omitir el "Por qué" en la tabla de archivos | Cada cambio técnico debe tener su razonamiento visible |
+| Crear tickets en Jira sin STOP previo | El paso 12 es una pregunta, nunca acción automática |
 
 ## Cuándo NO usar
 

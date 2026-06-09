@@ -1,6 +1,6 @@
 ---
 name: task
-version: 1.7.0
+version: 1.7.1
 description: Use when starting work on any Jira task — before reading code, writing code, or asking the user for context.
 ---
 
@@ -8,19 +8,13 @@ description: Use when starting work on any Jira task — before reading code, wr
 
 Dado un ID de Jira (task o HU), arma el contexto completo y ejecuta la implementación en fases. Sigue las fases en orden. No leer código ni preguntar al usuario hasta terminar el discovery.
 
-## Principio guía — actuar como senior, no como ejecutor
+## Principio guía
 
-Asumir que quien documentó el spec no conocía todas las implicaciones técnicas. Eso no es un juicio — es el punto de partida correcto. Significa que el spec puede estar incompleto, puede tener asunciones incorrectas sobre el codebase, y puede ignorar consecuencias que solo se ven desde adentro del sistema.
+El escepticismo por defecto aplica task a task: validar el spec contra la realidad del codebase, no ejecutarlo como verdad absoluta.
 
-En cada fase:
-
-- **Leer el spec con escepticismo** — no como verdad absoluta sino como intención que hay que validar contra la realidad del codebase
-- **Si algo no cierra técnicamente** → reportarlo antes de continuar, no asumir la interpretación más conveniente
-- **Si CodeGraph revela un blast radius alto** → proponer la alternativa menos invasiva, no ejecutar el cambio más directo
-- **Si el plan tiene una forma mejor** → sugerirla con justificación breve antes del STOP del paso 11
-- **Si durante la ejecución algo no cuadra** → STOP inmediato con descripción clara del problema
-
-El objetivo es entregar lo que el spec intenta pedir, con el juicio de alguien que entiende las consecuencias.
+- Si algo no cierra técnicamente → reportarlo antes de continuar
+- Si CodeGraph revela blast radius alto → proponer alternativa menos invasiva antes de ejecutar
+- Si durante la ejecución algo no cuadra → STOP inmediato
 
 ## Pre-flight — verificar MCPs antes de empezar
 
@@ -169,19 +163,10 @@ No continuar con `Tn+1` hasta que `Tn` tenga commit.
 | Error | Corrección |
 |-------|------------|
 | Tomar el Figma genérico del header del FRD | Buscar la sección `### HU-XX` y extraer el node-id de ahí |
-| Mezclar cambios FE y BE en el mismo brief | Filtrar estrictamente por `TASK_TYPE` desde la Spec Técnica |
 | Buscar "Documento fuente" en remote links de Jira | Está en el body de la HU — parsear el texto de `description` |
 | Saltear el paso 8 si el brief quedó completo | El STOP es obligatorio siempre — el bloque de alineamiento también |
 | Saltear el paso 11 si el plan parece obvio | El STOP es obligatorio siempre |
 | Incluir archivos en el plan sin verificarlos con CodeGraph | Verificar rutas antes de presentar el plan |
-| Empezar a codear sin verificar la rama (paso 9) | Verificar git status y rama antes de cualquier cambio |
-| Continuar con Tn+1 antes de commitear Tn | Cada tarea debe tener commit antes de avanzar |
-| Declarar completo sin pasar por verificación | La verificación goal-backward es obligatoria |
-| Crear PR sin esperar confirmación del usuario | Los pasos 15 y 16 son preguntas, no acciones automáticas |
-| Subir directo a la Spec sin pasar por la HU | El link al spec vive en la HU, no en el task |
-| Implementar sin cuestionar un spec incompleto | Si falta información crítica → preguntar, no asumir |
-| Seguir el plan aunque CodeGraph revele blast radius alto | Proponer alternativa menos invasiva antes de ejecutar |
-| Reportar como completo sin haber probado el flujo real | La verificación goal-backward es contra el comportamiento, no contra el código |
 
 ## Cuándo NO usar
 

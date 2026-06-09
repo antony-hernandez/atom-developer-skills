@@ -29,6 +29,6 @@ Dado un ID de Jira, arma el contexto completo antes de implementar. Sigue las fa
 
 **7.** Compilar brief usando `brief-template.md`. Incluir sección REUSO.
 
-**8.** Preguntar: ¿algo que ajustar antes de empezar?
+**8.** STOP — presentar el brief completo y preguntar explícitamente: _"¿Algo que ajustar antes de empezar?"_ No continuar hasta recibir respuesta.
 
 **9.** Implementar siguiendo estrictamente el brief y las reglas de CLAUDE.md.

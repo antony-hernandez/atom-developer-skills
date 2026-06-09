@@ -18,6 +18,15 @@ Versioning follows [Semantic Versioning](https://semver.org/).
 
 ---
 
+## [0.12.0] - 2026-06-09
+
+### Added
+- Skill `/task` v1.8.0: auditoría de gaps en ACs durante la compilación del brief
+  - Por cada AC: detecta happy path only, validaciones sin reglas, entidades asumidas como existentes, contratos BE sin spec de compatibilidad mobile
+  - Gaps bloqueantes → preguntas explícitas en el STOP del paso 8 antes de continuar
+  - Gaps no bloqueantes → documentados como `⚠️ Asumido: <decisión>` en el brief
+  - Sin gaps → silencioso
+
 ## [0.11.1] - 2026-06-08
 
 ### Changed

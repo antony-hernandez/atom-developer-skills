@@ -1,6 +1,6 @@
 ---
 name: task
-version: 1.7.1
+version: 1.8.0
 description: Use when starting work on any Jira task — before reading code, writing code, or asking the user for context.
 ---
 
@@ -63,6 +63,19 @@ Ningún código nuevo hasta que CodeGraph confirme que no existe. Resultados van
 
 **7.** Compilar brief usando `brief-template.md`. Incluir sección REUSO.
 
+Antes de compilar, **auditar los ACs** — por cada criterio de aceptación del task:
+
+- ¿Solo documenta el happy path? → ¿qué pasa si falla, si el recurso no existe, si el valor es null/vacío?
+- ¿Menciona validación sin definir las reglas? (¿qué mensaje? ¿qué condición exacta?)
+- ¿Asume que una entidad existe sin especificar qué pasa si no? (grupos, usuarios, registros referenciados)
+- ¿Modifica un contrato BE existente sin especificar compatibilidad con clientes mobile actuales?
+
+Clasificar cada gap encontrado:
+- **❓ Bloqueante** — sin esta info no se puede decidir qué código escribir
+- **⚠️ Asumido** — hay una respuesta técnica razonable; documentar la decisión tomada en el brief
+
+Si no hay gaps → silencioso, no agregar sección de gaps al brief.
+
 **8.** STOP — presentar el brief comenzando con un **bloque de alineamiento**:
 
 ```
@@ -73,6 +86,15 @@ Impacto técnico: <qué parte del sistema se toca y en qué dirección>
 Fuera de scope: <qué no se va a hacer aunque esté relacionado>
 
 ¿Esto refleja lo que esperás de esta tarea? ¿Algo que ajustar antes de empezar?
+```
+
+Si hay gaps **bloqueantes**, incluirlos antes del bloque de alineamiento:
+
+```
+❓ Gaps bloqueantes — necesito respuesta antes de continuar:
+
+1. [AC-1] "<cita exacta del AC>" — <pregunta específica>
+   Por qué importa: <qué decisión técnica depende de esta respuesta>
 ```
 
 No continuar hasta recibir respuesta. Si el usuario corrige el entendimiento → revisar el brief antes de continuar.

@@ -1,10 +1,10 @@
-# Contributing to Atomic
+# Contributing to Atom Developer Skills
 
 ## Setup de desarrollo
 
 ```bash
-git clone https://github.com/antony-hernandez/atomic
-cd atomic
+git clone https://github.com/antony-hernandez/atom-developer-skills
+cd atom-developer-skills
 npm run setup-dev   # instala el pre-push hook
 ```
 

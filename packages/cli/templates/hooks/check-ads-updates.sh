@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
-# SessionStart hook — sincroniza skills Atomic contra GitHub automáticamente.
+# SessionStart hook — sincroniza skills ADS contra GitHub automáticamente.
 # Si hay versión nueva, sobreescribe el SKILL.md local sin tocar CLAUDE.md ni settings.json.
 
-RAW_BASE="https://raw.githubusercontent.com/antony-hernandez/atomic/main/packages/cli/templates/skills"
+RAW_BASE="https://raw.githubusercontent.com/antony-hernandez/atom-developer-skills/main/skills"
 updated=""
 
 for skill in task spec; do
@@ -12,7 +12,7 @@ for skill in task spec; do
   local_v=$(grep -m1 "^version:" "$local_path" | awk '{print $2}')
   [ -n "$local_v" ] || continue
 
-  remote_content=$(curl -sf --max-time 3 -H "User-Agent: atomic-updater" "${RAW_BASE}/${skill}/SKILL.md") || continue
+  remote_content=$(curl -sf --max-time 3 -H "User-Agent: ads-updater" "${RAW_BASE}/${skill}/SKILL.md") || continue
   remote_v=$(echo "$remote_content" | grep -m1 "^version:" | awk '{print $2}')
 
   if [ -n "$remote_v" ] && [ "$remote_v" != "$local_v" ]; then
@@ -23,6 +23,6 @@ for skill in task spec; do
 done
 
 if [ -n "$updated" ]; then
-  printf '{"systemMessage": "⚡ Atomic — auto-actualizado: %s"}\n' "$updated"
+  printf '{"systemMessage": "⚡ ADS — auto-actualizado: %s"}\n' "$updated"
 fi
 exit 0

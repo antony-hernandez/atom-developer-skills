@@ -1,9 +1,9 @@
 {
-  "name": "@atomchat/atomic",
+  "name": "@atomchat/atom-developer-skills",
   "version": "0.1.0",
-  "description": "Asistente de desarrollo spec-driven para el equipo de Atom",
+  "description": "Atom Developer Skills \u2014 asistente de desarrollo spec-driven para el equipo de Atom",
   "bin": {
-    "atomic": "./src/install.mjs"
+    "ads": "./src/install.mjs"
   },
   "type": "module",
   "files": [

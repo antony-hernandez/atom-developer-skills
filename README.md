@@ -1,8 +1,8 @@
-# Atomic
+# Atom Developer Skills
 
 **El asistente de desarrollo de Atom.** Spec-driven, enfocado, sin fricción.
 
-Das un ID de tarea → Atomic lee Jira, sube a la HU, va a Confluence, encuentra el FRD, saca el Figma correcto, verifica qué ya existe en el codebase, y te entrega un brief listo para implementar. Sin inventar nada. Sin perder el foco.
+Das un ID de tarea → ADS lee Jira, sube a la HU, va a Confluence, encuentra el FRD, saca el Figma correcto, verifica qué ya existe en el codebase, y te entrega un brief listo para implementar. Sin inventar nada. Sin perder el foco.
 
 ---
 
@@ -13,7 +13,7 @@ Das un ID de tarea → Atomic lee Jira, sube a la HU, va a Confluence, encuentra
 Desde cualquier proyecto en Claude Code, escribe:
 
 ```
-instala Atomic en este proyecto desde https://github.com/antony-hernandez/atomic
+instala Atomic en este proyecto desde https://github.com/antony-hernandez/atom-developer-skills
 ```
 
 Claude descarga los skills, configura los MCPs y actualiza el CLAUDE.md.
@@ -42,7 +42,7 @@ El installer:
 ## Uso
 
 ```
-/task CV-123
+ads:task CV-123
 ```
 
 Eso es todo. Atomic hace el resto.
@@ -81,7 +81,7 @@ CV-599 (Development subtask)
 | Skill | Versión | Descripción |
 |-------|---------|-------------|
 | `/task <ID>` | v2.1.0 | Brief completo de una tarea de Jira — discovery, cross-check FE↔BE, viabilidad técnica, reuso, criterios |
-| `/spec <URL_FRD>` | v1.3.1 | Convierte un FRD en Spec Técnica + backlog de Jira |
+| `ads:spec <URL_FRD>` | v1.3.1 | Convierte un FRD en Spec Técnica + backlog de Jira |
 
 ---
 
@@ -103,7 +103,7 @@ packages/cli/
       backend-cf.md        ← reglas Cloud Functions
       mobile-rn.md         ← reglas React Native
     hooks/
-      check-atomic-updates.py  ← SessionStart hook (update check)
+      check-ads-updates.py  ← SessionStart hook (update check)
   hooks/
     pre-push               ← verifica versioning + changelog al pushear
 .claude-plugin/

@@ -9,7 +9,7 @@ import re
 import os
 import urllib.request
 
-RAW_BASE = "https://raw.githubusercontent.com/antony-hernandez/atomic/main/packages/cli/templates/skills"
+RAW_BASE = "https://raw.githubusercontent.com/antony-hernandez/atom-developer-skills/main/skills"
 
 SKILLS = [
     {"name": "task", "local": ".claude/skills/task/SKILL.md"},
@@ -23,7 +23,7 @@ def parse_version(content):
 def fetch_remote_version(skill_name):
     url = f"{RAW_BASE}/{skill_name}/SKILL.md"
     try:
-        req = urllib.request.Request(url, headers={"User-Agent": "atomic-updater"})
+        req = urllib.request.Request(url, headers={"User-Agent": "ads-updater"})
         with urllib.request.urlopen(req, timeout=3) as resp:
             return parse_version(resp.read().decode("utf-8"))
     except Exception:
@@ -50,7 +50,7 @@ def main():
     if outdated:
         updates = ", ".join(outdated)
         print(json.dumps({
-            "systemMessage": f"⚡ Atomic — update disponible: {updates}. Corré `npx github:antony-hernandez/atomic` para actualizar."
+            "systemMessage": f"⚡ ADS — update disponible: {updates}. Corré `npx github:antony-hernandez/atom-developer-skills` para actualizar."
         }))
 
 if __name__ == "__main__":

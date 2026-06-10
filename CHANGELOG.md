@@ -1,6 +1,6 @@
 # Changelog
 
-All notable changes to Atomic are documented here.
+All notable changes to Atom Developer Skills are documented here.
 Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 Versioning follows [Semantic Versioning](https://semver.org/).
 
@@ -17,6 +17,24 @@ Versioning follows [Semantic Versioning](https://semver.org/).
 - **PATCH** — wording clarification, typo, example improved
 
 ---
+
+## [1.0.0] — 2026-06-10
+
+### Breaking Changes
+- Proyecto renombrado de `atomic` a `atom-developer-skills`. CLI: `atomic` → `ads`.
+- Skills ahora namespaciados: `/task` → `ads:task`, `/spec` → `ads:spec`.
+- Marcadores en CLAUDE.md: `ATOMIC:START/END` → `ADS:START/END` (install.mjs migra automáticamente).
+- Auto-update hook eliminado — usar `claude plugins update ads` para actualizar.
+
+### Added
+- Plugin Claude Code formal: `claude plugins install github:antony-hernandez/atom-developer-skills`.
+- Skills disponibles como `ads:task` y `ads:spec` en proyectos con el plugin instalado.
+
+### Changed
+- `skills/` movido de `packages/cli/templates/skills/` al root del repositorio.
+- `check-atomic-updates` renombrado a `check-ads-updates`.
+- `version:` eliminado del frontmatter de ambos skills (campo no estándar).
+- Keywords de discovery mejorados en descriptions de `task` y `spec`.
 
 ## [0.25.0] - 2026-06-09
 

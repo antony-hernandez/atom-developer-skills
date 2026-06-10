@@ -5,7 +5,7 @@
  * o:  npx github:antony-hernandez/atomic
  */
 
-import { readFileSync, writeFileSync, mkdirSync, existsSync } from "fs";
+import { readFileSync, writeFileSync, mkdirSync, existsSync, chmodSync } from "fs";
 import { resolve, dirname, join } from "path";
 import { fileURLToPath } from "url";
 
@@ -123,8 +123,10 @@ async function install() {
     writeFileSync(join(ROOT, dest), content);
   }
   // 2b. Copiar hook de update check
-  const updateHook = await readTemplate("hooks/check-atomic-updates.py");
-  writeFileSync(join(ROOT, ".claude/hooks/check-atomic-updates.py"), updateHook);
+  const updateHook = await readTemplate("hooks/check-atomic-updates.sh");
+  const hookPath = join(ROOT, ".claude/hooks/check-atomic-updates.sh");
+  writeFileSync(hookPath, updateHook);
+  chmodSync(hookPath, 0o755);
 
   console.log(green("  ✓ skill /task") + versionLabel + ` → .claude/skills/task/`);
   console.log(green("  ✓ skill /spec") + specVersionLabel + ` → .claude/skills/spec/`);
@@ -167,7 +169,7 @@ async function install() {
   );
   if (!hasUpdateHook) {
     settings.hooks.SessionStart.push({
-      hooks: [{ type: "command", command: "python3 .claude/hooks/check-atomic-updates.py", timeout: 5 }]
+      hooks: [{ type: "command", command: "bash .claude/hooks/check-atomic-updates.sh", timeout: 5 }]
     });
     console.log(green("  ✓ SessionStart hook configurado (update check)"));
   }

@@ -1,6 +1,6 @@
 ---
 name: task
-version: 3.2.0
+version: 3.3.0
 description: Use when starting work on any Jira task — before reading code, writing code, or asking the user for context.
 ---
 
@@ -141,17 +141,24 @@ git status && git branch --show-current
 **12.** Verificar que cada archivo del plan existe con `codegraph_search`. No incluir archivos que CodeGraph no encuentre.
 
 ```
-[ ] T1: <qué cambia> — `path/archivo.ts` (modify)
+[ ] T1: <función/campo/valor concreto que cambia> — `path/archivo.ts` (modify)
         Por qué: <motivo técnico>
+        Verificar: <grep, test command, o aserción observable>
 
-[ ] T2: <qué cambia> — `path/archivo.ts` (modify) ← depende de T1
+[ ] T2: <función/campo/valor concreto que cambia> — `path/archivo.ts` (modify) ← depende de T1
         Por qué: <motivo técnico>
+        Verificar: <grep, test command, o aserción observable>
 
 [ ] T3: <qué cambia> — `path/archivo.spec.ts` (create)
         Por qué: verificar que <comportamiento> funciona bajo <condición>
+        Verificar: test suite pasa — `ng test --include=path/archivo.spec.ts`
 ```
 
 Una tarea = un archivo o cambio cohesivo y reversible. Tests como tareas explícitas, no como afterthought.
+
+**Regla de concreción**: la descripción nombra qué función, campo, o valor cambia — nunca "actualizar el servicio" o "ajustar la lógica". Si no incluye un identificador concreto, no es suficiente.
+
+**Self-check antes del STOP**: por cada AC del brief, ¿hay al menos una tarea que lo cubre? Si no → agregar la tarea antes de mostrar el plan.
 
 **13. STOP** — _"¿Ajustamos el plan antes de ejecutar?"_ No continuar hasta confirmación.
 
@@ -163,8 +170,9 @@ Una tarea = un archivo o cambio cohesivo y reversible. Tests como tareas explíc
 2. Si lo que se ve difiere del plan → **STOP**: describir la diferencia y esperar decisión
 3. Si al leer se descubre un cambio necesario que el plan no contempla → **STOP**: proponer la tarea adicional y esperar confirmación. No improvisar fuera del plan aprobado.
 4. Implementar siguiendo el patrón existente más cercano
-5. Commit atómico: `<tipo>(<scope>): <descripción> [<TICKET-ID>]`
-6. Marcar `[x] Tn` y reportar: `✓ T1/N completada`
+5. Verificar el criterio de la tarea — si falla → corregir antes de continuar
+6. Commit atómico: `<tipo>(<scope>): <descripción> [<TICKET-ID>]`
+7. Marcar `[x] Tn` y reportar: `✓ T1/N completada`
 
 No avanzar a `Tn+1` hasta que `Tn` tenga commit.
 
@@ -178,7 +186,7 @@ npx tsc --noEmit
 
 Errores de tipos → corregir antes de continuar.
 
-**16.** Verificar goal-backward contra cada AC:
+**16.** Verificar goal-backward contra cada AC — chequeo de integración, no de tareas individuales. Cada criterio puede requerir que múltiples tareas funcionen juntas:
 
 ```
 ✅ AC-1: <descripción> — implementado en T2 (path/archivo.ts:45)

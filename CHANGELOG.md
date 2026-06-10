@@ -18,6 +18,18 @@ Versioning follows [Semantic Versioning](https://semver.org/).
 
 ---
 
+## [0.24.0] - 2026-06-09
+
+### Changed
+- Skill `/task` v3.3.0: per-task verification y self-check del plan (patrón GSD)
+  - Formato de tarea en Fase 5: campo `Verificar:` obligatorio — grep, test command, o aserción observable. No "funciona bien"
+  - Regla de concreción: la descripción de cada tarea nombra el identificador concreto (función/campo/valor) — nunca "actualizar el servicio"
+  - Self-check antes del STOP 13: verificar que cada AC del brief tiene al menos una tarea que lo cubre
+  - Ejecución paso 14: verificar el criterio de la tarea después de implementar y antes de commitear
+  - Verificación paso 16: reencuadrado como check de integración (los criterios por tarea son la primera defensa; paso 16 verifica que los ACs funcionan como un todo)
+
+---
+
 ## [0.23.0] - 2026-06-09
 
 ### Changed

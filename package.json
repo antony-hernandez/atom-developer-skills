@@ -1,9 +1,9 @@
 {
-  "name": "atomic",
-  "version": "0.25.0",
-  "description": "Asistente de desarrollo spec-driven para el equipo de Atom",
+  "name": "atom-developer-skills",
+  "version": "1.0.0",
+  "description": "Atom Developer Skills — asistente de desarrollo spec-driven para el equipo de Atom",
   "bin": {
-    "atomic": "./packages/cli/src/install.mjs"
+    "ads": "./packages/cli/src/install.mjs"
   },
   "type": "module",
   "scripts": {
